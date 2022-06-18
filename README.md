@@ -10,3 +10,8 @@ The data is obtained from Weather API.
 3. Able to recheck the current weather from the history
 4. Remove items from history
 5. If the input city or country being invalid, a message prompt will inform about it.
+
+## Extra
+
+1. This is a responsive web application.
+2. The default city and country is preset to Ipoh, MY, which is my hometown
