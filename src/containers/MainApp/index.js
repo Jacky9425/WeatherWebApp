@@ -48,49 +48,47 @@ function MainApp(props) {
   };
 
   return (
-    <>
-      <div style={styles.container}>
-        <h2>Today's Weather</h2>
+    <div style={styles.container}>
+      <h2>Today's Weather</h2>
 
-        <div style={styles.divider} />
+      <div style={styles.divider} />
 
-        <div style={styles.header(mobileView)}>
-          <CustomInput
-            label={"City"}
-            status={weatherError && "error"}
-            value={city}
-            onChange={(e) => setCity(e.target.value.toUpperCase())}
-          />
+      <div style={styles.header(mobileView)}>
+        <CustomInput
+          label={"City"}
+          status={weatherError && "error"}
+          value={city}
+          onChange={(e) => setCity(e.target.value.toUpperCase())}
+        />
 
-          <CustomInput
-            label={"Country"}
-            status={weatherError && "error"}
-            value={country}
-            onChange={(e) => setCountry(e.target.value.toUpperCase())}
-          />
+        <CustomInput
+          label={"Country"}
+          status={weatherError && "error"}
+          value={country}
+          onChange={(e) => setCountry(e.target.value.toUpperCase())}
+        />
 
-          <Button
-            type="primary"
-            style={{
-              ...(mobileView ? styles.searchBtnMobile : styles.searchBtn),
-              ...styles.btn,
-            }}
-            onClick={onSearch}
-            loading={loading}
-          >
-            Search
-          </Button>
+        <Button
+          type="primary"
+          style={{
+            ...(mobileView ? styles.searchBtnMobile : styles.searchBtn),
+            ...styles.btn,
+          }}
+          onClick={onSearch}
+          loading={loading}
+        >
+          Search
+        </Button>
 
-          <Button type="primary" style={styles.btn} onClick={onClearInput}>
-            Clear
-          </Button>
-        </div>
-
-        <WeatherDisplay />
-
-        <SearchHistory />
+        <Button type="primary" style={styles.btn} onClick={onClearInput}>
+          Clear
+        </Button>
       </div>
-    </>
+
+      <WeatherDisplay />
+
+      <SearchHistory />
+    </div>
   );
 }
 
