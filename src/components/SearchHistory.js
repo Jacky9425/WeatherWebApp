@@ -7,6 +7,7 @@ import moment from "moment";
 
 const { Text } = Typography;
 
+// component for single history's item
 function HistoryItem(props) {
   const { fetchWeather, deleteHistory } = useAppContext();
   const { item, index } = props;
@@ -36,6 +37,7 @@ function HistoryItem(props) {
   );
 }
 
+// History Section
 function SearchHistory(props) {
   const { history } = useAppContext();
 

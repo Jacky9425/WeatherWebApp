@@ -5,6 +5,7 @@ import InfoContainer from "./InfoContainer";
 
 const { Text } = Typography;
 
+// component for each line of details of weather
 function WeatherDetails({ label, value }) {
   const { mobileView } = useAppContext();
   return (
@@ -18,6 +19,7 @@ function WeatherDetails({ label, value }) {
   );
 }
 
+// Display component for the obtained weather
 function WeatherDisplay(props) {
   const { weatherData, loading, weatherError } = useAppContext();
 

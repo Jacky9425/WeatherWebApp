@@ -11,6 +11,9 @@ function AppContextProvider(props) {
   const { children } = props;
 
   const [mobileView, setMobileView] = useState(window.innerWidth < 900);
+  const [weatherData, setWeatherData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [weatherError, setWeatherError] = useState(false);
   const [history, setHistory] = useState([
     {
       id: 1,
@@ -19,14 +22,12 @@ function AppContextProvider(props) {
       dateTime: moment(),
     },
   ]);
-  const [weatherData, setWeatherData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [weatherError, setWeatherError] = useState(false);
 
   const handleResize = () => {
     setMobileView(window.innerWidth < 960);
   };
 
+  // main function to fetch the weather, default to ipoh, MY
   const fetchWeather = (city = "ipoh", country = "malaysia", obj = {}) => {
     setLoading(true);
 

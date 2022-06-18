@@ -34,6 +34,7 @@ function MainApp(props) {
   };
 
   const onSearch = () => {
+    // if input is empty, shall not proceed
     if (city === "" || country === "") {
       message.warn("Please fill in all the fields.");
       return;
