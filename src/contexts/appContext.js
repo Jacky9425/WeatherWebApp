@@ -23,6 +23,7 @@ function AppContextProvider(props) {
     },
   ]);
 
+  // to control styling if viewport is smaller
   const handleResize = () => {
     setMobileView(window.innerWidth < 960);
   };
