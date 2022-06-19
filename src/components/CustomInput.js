@@ -9,12 +9,7 @@ function CustomInput(props) {
   const { mobileView } = useAppContext();
 
   return (
-    <div
-      style={{
-        ...styles.inputContainer,
-        ...(mobileView && { marginBottom: 10 }),
-      }}
-    >
+    <div style={styles.inputContainer(mobileView)}>
       <Text strong style={styles.label}>
         {label}:
       </Text>
@@ -27,17 +22,18 @@ function CustomInput(props) {
 export default CustomInput;
 
 const styles = {
-  inputContainer: {
+  inputContainer: (mobileView) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     marginRight: 15,
-  },
+    marginBottom: mobileView ? 10 : 0,
+  }),
   label: {
     marginRight: 6,
     fontSize: 16,
   },
   input: (mobileView) => ({
-    width: mobileView ? "50vw" : "9vw",
+    width: mobileView ? "50vw" : "20vw",
   }),
 };
