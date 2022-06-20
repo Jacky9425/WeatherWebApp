@@ -15,4 +15,6 @@ const GetWeather = (city, country) => {
   });
 };
 
-export { format, GetWeather };
+const WeatherIconURL = " http://openweathermap.org/img/wn/";
+
+export { format, GetWeather, WeatherIconURL };

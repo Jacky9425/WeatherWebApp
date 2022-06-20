@@ -2,6 +2,7 @@ import React from "react";
 import { Typography } from "antd";
 import { useAppContext } from "../contexts/appContext";
 import InfoContainer from "./InfoContainer";
+import { WeatherIconURL } from "../constants";
 
 const { Text } = Typography;
 
@@ -32,6 +33,7 @@ function WeatherDisplay(props) {
     temp_min,
     temp_max,
     time,
+    icon,
   } = weatherData;
 
   const details_data = [
@@ -63,16 +65,22 @@ function WeatherDisplay(props) {
         {name}, {country}
       </Text>
 
-      <h1>{main}</h1>
+      <div style={styles.rowFlex}>
+        <h1>{main}</h1>
+
+        <img
+          src={`${WeatherIconURL}${icon}.png`}
+          width={45}
+          height={45}
+          style={styles.iconImg}
+        />
+      </div>
 
       {details_data.map((detail, index) => (
         <WeatherDetails key={index} label={detail.label} value={detail.value} />
       ))}
 
-      <InfoContainer
-        condition_loading={loading}
-        condition_error={weatherError}
-      />
+      <InfoContainer condition_loading={loading} />
     </div>
   ) : (
     <Text>Please insert city and country to check weather.</Text>
@@ -82,6 +90,10 @@ function WeatherDisplay(props) {
 export default WeatherDisplay;
 
 const styles = {
+  rowFlex: {
+    display: "flex",
+    flexDirection: "row",
+  },
   cityCountry: {
     fontSize: 18,
     color: "gray",
@@ -100,4 +112,10 @@ const styles = {
   detailsLabel: (mobileView) => ({
     width: mobileView ? "50vw" : "10vw",
   }),
+  iconImg: {
+    backgroundColor: "rgba(89,89,89,0.3)",
+    marginLeft: 15,
+    borderRadius: 40,
+    padding: 3,
+  },
 };

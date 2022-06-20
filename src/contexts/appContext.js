@@ -50,11 +50,13 @@ function AppContextProvider(props) {
           temp_min: res.main.temp_min,
           temp_max: res.main.temp_max,
           main: res.weather[0].main,
+          icon: res.weather[0].icon,
           description: res.weather[0].description,
           time: moment().format(format),
         });
       })
       .catch((e) => {
+        // if api returned error
         setLoading(false);
         setWeatherError(true);
         message.warn(
