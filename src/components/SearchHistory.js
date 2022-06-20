@@ -9,26 +9,25 @@ const { Text } = Typography;
 
 // component for single history's item
 function HistoryItem(props) {
-  const { fetchWeather, deleteHistory } = useAppContext();
-  const { item, index } = props;
+  const { index, content, saveDate, onSearch, onDelete } = props;
   return (
     <div style={styles.listItem}>
       <Text>
-        <Text strong>{index + 1}.</Text> {item.city}, {item.country}
+        <Text strong>{index + 1}.</Text> {content}
       </Text>
 
       <div style={styles.btnContainer}>
-        <Text>{moment(item.dateTime, format).format(format)}</Text>
+        <Text>{moment(saveDate, format).format(format)}</Text>
 
         <Button
           style={styles.actionButton}
-          onClick={() => fetchWeather(item.city, item.country)}
+          onClick={onSearch}
           icon={<SearchOutlined />}
         />
 
         <Popconfirm
           title={"Are you sure to remove this item?"}
-          onConfirm={() => deleteHistory(index)}
+          onConfirm={onDelete}
         >
           <Button style={styles.actionButton} icon={<DeleteOutlined />} />
         </Popconfirm>
@@ -39,7 +38,7 @@ function HistoryItem(props) {
 
 // History Section
 function SearchHistory(props) {
-  const { history } = useAppContext();
+  const { history, fetchWeather, deleteHistory } = useAppContext();
 
   return (
     <div style={styles.container}>
@@ -54,7 +53,16 @@ function SearchHistory(props) {
       ) : (
         <div style={styles.scrollContainer}>
           {history.map((item, index) => {
-            return <HistoryItem key={index} item={item} index={index} />;
+            return (
+              <HistoryItem
+                key={index}
+                index={index}
+                content={`${item.city} - ${item.country}`}
+                saveDate={item.dateTime}
+                onSearch={() => fetchWeather(item.city, item.country)}
+                onDelete={() => deleteHistory(index)}
+              />
+            );
           })}
         </div>
       )}

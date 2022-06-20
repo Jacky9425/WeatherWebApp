@@ -5,12 +5,13 @@ import { LoadingOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 
 function InfoContainer(props) {
-  const { condition_loading } = props;
+  const { condition_loading, loadingIcon, loadingText } = props;
 
   return condition_loading ? (
     <div style={styles.loadingContainer}>
-      <LoadingOutlined />
-      <Text style={{ marginLeft: 10 }}>Loading...</Text>
+      {loadingIcon || <LoadingOutlined />}
+
+      <Text style={{ marginLeft: 10 }}>{loadingText || "Loading..."}</Text>
     </div>
   ) : null;
 }
